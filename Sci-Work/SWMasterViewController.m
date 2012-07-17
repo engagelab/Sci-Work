@@ -13,7 +13,14 @@
 @interface SWMasterViewController () {
     NSMutableArray *_objects;
 }
+-(void) fetchGroupNamesFromServer;
+-(void)extractGroupName: (NSMutableArray*)json;
+
 @end
+
+
+
+
 
 @implementation SWMasterViewController
 
@@ -29,14 +36,45 @@
     [super dealloc];
 }
 
+
+-(BOOL) hasInternet{
+    
+    Reachability *reach = [Reachability reachabilityWithHostName:@"www.google.com"];
+    
+    NetworkStatus internetStats = [reach currentReachabilityStatus];
+    
+    if (internetStats == NotReachable)
+    {
+        UIAlertView *alertOne = [[UIAlertView alloc] initWithTitle:@"Internet" message:@"is DOWN!!!" delegate:self cancelButtonTitle:@"Damnit!!" otherButtonTitles:@"Cancel", nil];
+        
+        [alertOne show];
+        
+        [alertOne release];
+    }
+    else {
+        UIAlertView *alertTwo = [[UIAlertView alloc] initWithTitle:@"Internet" message:@"is WORKING!!!" delegate:self cancelButtonTitle:@"Cool!!" otherButtonTitles:@"Cancel", nil];
+        
+        [alertTwo show];
+        
+        [alertTwo release];
+    }
+    
+    return YES;
+}
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self hasInternet];
+    [self fetchGroupNamesFromServer];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    UIBarButtonItem *addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)] autorelease];
-    self.navigationItem.rightBarButtonItem = addButton;
+//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+//
+//    UIBarButtonItem *addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)] autorelease];
+//    self.navigationItem.rightBarButtonItem = addButton;
 }
 
 - (void)viewDidUnload
@@ -50,15 +88,7 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-- (void)insertNewObject:(id)sender
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
+
 
 #pragma mark - Table View
 
@@ -69,33 +99,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return listofGroupName.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
-    NSDate *object = [_objects objectAtIndex:indexPath.row];
+    NSDate *object = [listofGroupName objectAtIndex:indexPath.row];
+
     cell.textLabel.text = [object description];
+    
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-}
 
 /*
 // Override to support rearranging the table view.
@@ -115,11 +132,57 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+    NSLog(@"Source Controller = %@", [segue sourceViewController]);
+    NSLog(@"Destination Controller = %@", [segue destinationViewController]);
+    NSLog(@"Segue Identifier = %@", [segue identifier]);
+    if ([[segue identifier] isEqualToString:@"showTasks"])
+    {
+        SWTaskViewController *viewController = [segue destinationViewController];
+        viewController.groupName = [self.tableView indexPathForSelectedRow];
+
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = [_objects objectAtIndex:indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+        NSString *object = [listofGroupName objectAtIndex:indexPath.row];
+        [[segue destinationViewController] setGroupName:object];
     }
 }
+    
+    
+ // utility methods
+    
+    
+    
+-(void) fetchGroupNamesFromServer
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://imediamac11.uio.no:9000/group"];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    
+    NSError *error;
+    
+    NSMutableArray *json = (NSMutableArray*)[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    
+    NSLog(@"%@", [json objectAtIndex:0]);
+    [self extractGroupName:json];
+
+}
+
+-(void)extractGroupName: (NSMutableArray*)json
+{
+    NSMutableArray *groupNames = [NSMutableArray array];
+    
+    for (NSDictionary *dict in json)
+            {
+                NSString *name = [[NSString alloc] init] ;
+                name = [dict objectForKey:@"name"];
+                [groupNames addObject:name];
+            }
+    
+    listofGroupName = [[NSMutableArray alloc]initWithArray:groupNames];       
+    
+    NSLog(@"Group Names Array = %@", listofGroupName);
+}
+
 
 @end

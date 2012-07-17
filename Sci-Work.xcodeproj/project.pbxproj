@@ -16,6 +16,9 @@
 		B9E2A08115B57D8600014142 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9E2A07F15B57D8600014142 /* MainStoryboard.storyboard */; };
 		B9E2A08415B57D8600014142 /* SWMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2A08315B57D8600014142 /* SWMasterViewController.m */; };
 		B9E2A08715B57D8600014142 /* SWDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2A08615B57D8600014142 /* SWDetailViewController.m */; };
+		B9E2A08F15B582E600014142 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2A08E15B582E600014142 /* Reachability.m */; };
+		B9E2A09115B582FB00014142 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E2A09015B582FB00014142 /* SystemConfiguration.framework */; };
+		B9E2A09815B5982A00014142 /* SWTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2A09715B5982A00014142 /* SWTaskViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,17 +26,22 @@
 		B9E2A06D15B57D8600014142 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B9E2A06F15B57D8600014142 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B9E2A07115B57D8600014142 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		B9E2A07515B57D8600014142 /* Sci-Work-Info.plist */ = {isa = PBXFileReference; path = "Sci-Work-Info.plist"; sourceTree = "<group>"; };
+		B9E2A07515B57D8600014142 /* Sci-Work-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sci-Work-Info.plist"; sourceTree = "<group>"; };
 		B9E2A07715B57D8600014142 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B9E2A07915B57D8600014142 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B9E2A07B15B57D8600014142 /* Sci-Work-Prefix.pch */ = {isa = PBXFileReference; path = "Sci-Work-Prefix.pch"; sourceTree = "<group>"; };
-		B9E2A07C15B57D8600014142 /* SWAppDelegate.h */ = {isa = PBXFileReference; path = SWAppDelegate.h; sourceTree = "<group>"; };
+		B9E2A07B15B57D8600014142 /* Sci-Work-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sci-Work-Prefix.pch"; sourceTree = "<group>"; };
+		B9E2A07C15B57D8600014142 /* SWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWAppDelegate.h; sourceTree = "<group>"; };
 		B9E2A07D15B57D8600014142 /* SWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWAppDelegate.m; sourceTree = "<group>"; };
 		B9E2A08015B57D8600014142 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		B9E2A08215B57D8600014142 /* SWMasterViewController.h */ = {isa = PBXFileReference; path = SWMasterViewController.h; sourceTree = "<group>"; };
+		B9E2A08215B57D8600014142 /* SWMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWMasterViewController.h; sourceTree = "<group>"; };
 		B9E2A08315B57D8600014142 /* SWMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWMasterViewController.m; sourceTree = "<group>"; };
-		B9E2A08515B57D8600014142 /* SWDetailViewController.h */ = {isa = PBXFileReference; path = SWDetailViewController.h; sourceTree = "<group>"; };
+		B9E2A08515B57D8600014142 /* SWDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWDetailViewController.h; sourceTree = "<group>"; };
 		B9E2A08615B57D8600014142 /* SWDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWDetailViewController.m; sourceTree = "<group>"; };
+		B9E2A08D15B582E600014142 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		B9E2A08E15B582E600014142 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		B9E2A09015B582FB00014142 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B9E2A09615B5982A00014142 /* SWTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTaskViewController.h; sourceTree = "<group>"; };
+		B9E2A09715B5982A00014142 /* SWTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTaskViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9E2A09115B582FB00014142 /* SystemConfiguration.framework in Frameworks */,
 				B9E2A06E15B57D8600014142 /* UIKit.framework in Frameworks */,
 				B9E2A07015B57D8600014142 /* Foundation.framework in Frameworks */,
 				B9E2A07215B57D8600014142 /* CoreGraphics.framework in Frameworks */,
@@ -53,6 +62,7 @@
 		B9E2A05E15B57D8600014142 = {
 			isa = PBXGroup;
 			children = (
+				B9E2A09015B582FB00014142 /* SystemConfiguration.framework */,
 				B9E2A07315B57D8600014142 /* Sci-Work */,
 				B9E2A06C15B57D8600014142 /* Frameworks */,
 				B9E2A06A15B57D8600014142 /* Products */,
@@ -80,6 +90,8 @@
 		B9E2A07315B57D8600014142 /* Sci-Work */ = {
 			isa = PBXGroup;
 			children = (
+				B9E2A08D15B582E600014142 /* Reachability.h */,
+				B9E2A08E15B582E600014142 /* Reachability.m */,
 				B9E2A07C15B57D8600014142 /* SWAppDelegate.h */,
 				B9E2A07D15B57D8600014142 /* SWAppDelegate.m */,
 				B9E2A07F15B57D8600014142 /* MainStoryboard.storyboard */,
@@ -88,6 +100,8 @@
 				B9E2A08515B57D8600014142 /* SWDetailViewController.h */,
 				B9E2A08615B57D8600014142 /* SWDetailViewController.m */,
 				B9E2A07415B57D8600014142 /* Supporting Files */,
+				B9E2A09615B5982A00014142 /* SWTaskViewController.h */,
+				B9E2A09715B5982A00014142 /* SWTaskViewController.m */,
 			);
 			path = "Sci-Work";
 			sourceTree = "<group>";
@@ -170,6 +184,8 @@
 				B9E2A07E15B57D8600014142 /* SWAppDelegate.m in Sources */,
 				B9E2A08415B57D8600014142 /* SWMasterViewController.m in Sources */,
 				B9E2A08715B57D8600014142 /* SWDetailViewController.m in Sources */,
+				B9E2A08F15B582E600014142 /* Reachability.m in Sources */,
+				B9E2A09815B5982A00014142 /* SWTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

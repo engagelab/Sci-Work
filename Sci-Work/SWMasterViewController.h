@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reachability.h"
+#import "SWTaskViewController.h"
 
 @interface SWMasterViewController : UITableViewController
+{
+    NSMutableArray *listofGroupName;
+}
 
 @end
