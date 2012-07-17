@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWDetailViewController.h"
 
 @interface SWTaskViewController : UITableViewController
 {

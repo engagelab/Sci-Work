@@ -8,6 +8,7 @@
 
 #import "SWTaskViewController.h"
 
+
 @interface SWTaskViewController ()
 
 -(void) fetchTaskTitlesFromServer;
@@ -100,9 +101,16 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showDetail"])
+    if ([[segue identifier] isEqualToString:@"showDetails"])
     {
+        SWDetailViewController *viewController = [segue destinationViewController];
+
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSString *object = [listofTaskTitles objectAtIndex:indexPath.row];
+        object = [object stringByAppendingString:(NSString*)_groupName];
+        viewController.detailItem = [self.tableView indexPathForSelectedRow];
+        
+        [[segue destinationViewController] setDetailItem:object];
         
 //        NSDate *object = [listofTaskTitles objectAtIndex:indexPath.row];
 //        
