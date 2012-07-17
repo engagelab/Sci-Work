@@ -1,0 +1,286 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B9E2A06E15B57D8600014142 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E2A06D15B57D8600014142 /* UIKit.framework */; };
+		B9E2A07015B57D8600014142 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E2A06F15B57D8600014142 /* Foundation.framework */; };
+		B9E2A07215B57D8600014142 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E2A07115B57D8600014142 /* CoreGraphics.framework */; };
+		B9E2A07815B57D8600014142 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B9E2A07615B57D8600014142 /* InfoPlist.strings */; };
+		B9E2A07A15B57D8600014142 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2A07915B57D8600014142 /* main.m */; };
+		B9E2A07E15B57D8600014142 /* SWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2A07D15B57D8600014142 /* SWAppDelegate.m */; };
+		B9E2A08115B57D8600014142 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9E2A07F15B57D8600014142 /* MainStoryboard.storyboard */; };
+		B9E2A08415B57D8600014142 /* SWMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2A08315B57D8600014142 /* SWMasterViewController.m */; };
+		B9E2A08715B57D8600014142 /* SWDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2A08615B57D8600014142 /* SWDetailViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B9E2A06915B57D8600014142 /* Sci-Work.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sci-Work.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9E2A06D15B57D8600014142 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B9E2A06F15B57D8600014142 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B9E2A07115B57D8600014142 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B9E2A07515B57D8600014142 /* Sci-Work-Info.plist */ = {isa = PBXFileReference; path = "Sci-Work-Info.plist"; sourceTree = "<group>"; };
+		B9E2A07715B57D8600014142 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B9E2A07915B57D8600014142 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B9E2A07B15B57D8600014142 /* Sci-Work-Prefix.pch */ = {isa = PBXFileReference; path = "Sci-Work-Prefix.pch"; sourceTree = "<group>"; };
+		B9E2A07C15B57D8600014142 /* SWAppDelegate.h */ = {isa = PBXFileReference; path = SWAppDelegate.h; sourceTree = "<group>"; };
+		B9E2A07D15B57D8600014142 /* SWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWAppDelegate.m; sourceTree = "<group>"; };
+		B9E2A08015B57D8600014142 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		B9E2A08215B57D8600014142 /* SWMasterViewController.h */ = {isa = PBXFileReference; path = SWMasterViewController.h; sourceTree = "<group>"; };
+		B9E2A08315B57D8600014142 /* SWMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWMasterViewController.m; sourceTree = "<group>"; };
+		B9E2A08515B57D8600014142 /* SWDetailViewController.h */ = {isa = PBXFileReference; path = SWDetailViewController.h; sourceTree = "<group>"; };
+		B9E2A08615B57D8600014142 /* SWDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWDetailViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B9E2A06615B57D8600014142 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9E2A06E15B57D8600014142 /* UIKit.framework in Frameworks */,
+				B9E2A07015B57D8600014142 /* Foundation.framework in Frameworks */,
+				B9E2A07215B57D8600014142 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B9E2A05E15B57D8600014142 = {
+			isa = PBXGroup;
+			children = (
+				B9E2A07315B57D8600014142 /* Sci-Work */,
+				B9E2A06C15B57D8600014142 /* Frameworks */,
+				B9E2A06A15B57D8600014142 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B9E2A06A15B57D8600014142 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B9E2A06915B57D8600014142 /* Sci-Work.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B9E2A06C15B57D8600014142 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B9E2A06D15B57D8600014142 /* UIKit.framework */,
+				B9E2A06F15B57D8600014142 /* Foundation.framework */,
+				B9E2A07115B57D8600014142 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B9E2A07315B57D8600014142 /* Sci-Work */ = {
+			isa = PBXGroup;
+			children = (
+				B9E2A07C15B57D8600014142 /* SWAppDelegate.h */,
+				B9E2A07D15B57D8600014142 /* SWAppDelegate.m */,
+				B9E2A07F15B57D8600014142 /* MainStoryboard.storyboard */,
+				B9E2A08215B57D8600014142 /* SWMasterViewController.h */,
+				B9E2A08315B57D8600014142 /* SWMasterViewController.m */,
+				B9E2A08515B57D8600014142 /* SWDetailViewController.h */,
+				B9E2A08615B57D8600014142 /* SWDetailViewController.m */,
+				B9E2A07415B57D8600014142 /* Supporting Files */,
+			);
+			path = "Sci-Work";
+			sourceTree = "<group>";
+		};
+		B9E2A07415B57D8600014142 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B9E2A07515B57D8600014142 /* Sci-Work-Info.plist */,
+				B9E2A07615B57D8600014142 /* InfoPlist.strings */,
+				B9E2A07915B57D8600014142 /* main.m */,
+				B9E2A07B15B57D8600014142 /* Sci-Work-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B9E2A06815B57D8600014142 /* Sci-Work */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9E2A08A15B57D8600014142 /* Build configuration list for PBXNativeTarget "Sci-Work" */;
+			buildPhases = (
+				B9E2A06515B57D8600014142 /* Sources */,
+				B9E2A06615B57D8600014142 /* Frameworks */,
+				B9E2A06715B57D8600014142 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Sci-Work";
+			productName = "Sci-Work";
+			productReference = B9E2A06915B57D8600014142 /* Sci-Work.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B9E2A06015B57D8600014142 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SW;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = B9E2A06315B57D8600014142 /* Build configuration list for PBXProject "Sci-Work" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B9E2A05E15B57D8600014142;
+			productRefGroup = B9E2A06A15B57D8600014142 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B9E2A06815B57D8600014142 /* Sci-Work */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B9E2A06715B57D8600014142 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9E2A07815B57D8600014142 /* InfoPlist.strings in Resources */,
+				B9E2A08115B57D8600014142 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B9E2A06515B57D8600014142 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9E2A07A15B57D8600014142 /* main.m in Sources */,
+				B9E2A07E15B57D8600014142 /* SWAppDelegate.m in Sources */,
+				B9E2A08415B57D8600014142 /* SWMasterViewController.m in Sources */,
+				B9E2A08715B57D8600014142 /* SWDetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B9E2A07615B57D8600014142 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B9E2A07715B57D8600014142 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B9E2A07F15B57D8600014142 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B9E2A08015B57D8600014142 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B9E2A08815B57D8600014142 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B9E2A08915B57D8600014142 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B9E2A08B15B57D8600014142 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sci-Work/Sci-Work-Prefix.pch";
+				INFOPLIST_FILE = "Sci-Work/Sci-Work-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B9E2A08C15B57D8600014142 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sci-Work/Sci-Work-Prefix.pch";
+				INFOPLIST_FILE = "Sci-Work/Sci-Work-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B9E2A06315B57D8600014142 /* Build configuration list for PBXProject "Sci-Work" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9E2A08815B57D8600014142 /* Debug */,
+				B9E2A08915B57D8600014142 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9E2A08A15B57D8600014142 /* Build configuration list for PBXNativeTarget "Sci-Work" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9E2A08B15B57D8600014142 /* Debug */,
+				B9E2A08C15B57D8600014142 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B9E2A06015B57D8600014142 /* Project object */;
+}
