@@ -17,6 +17,10 @@
 @synthesize detailItem = _detailItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
 
+//video
+@synthesize vpicker;
+
+
 - (void)dealloc
 {
     [_detailItem release];
@@ -37,6 +41,8 @@
     }
 }
 
+
+
 - (void)configureView
 {
     // Update the user interface for the detail item.
@@ -45,6 +51,10 @@
         self.detailDescriptionLabel.text = [self.detailItem description];
     }
 }
+
+
+
+
 
 - (void)viewDidLoad
 {
@@ -64,5 +74,74 @@
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
+
+- (IBAction)recordVideo:(id)sender 
+{
+
+    //check if image picker does not exist then create new picker and assing to current view
+    if (!vpicker) {
+        vpicker = [[UIImagePickerController alloc] init];
+        vpicker.delegate = self;
+    }
+    
+    //Check if the camera is available
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
+    {
+        
+        //find available media types
+        NSArray* mediaTypes = [ UIImagePickerController
+                               availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+        
+        //is video one of the available types?
+        if ([mediaTypes containsObject:(NSString*) kUTTypeMovie]) {
+            
+            //restrict source type to camera
+            vpicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            //vpicker.sourceType = UIImagePickerControllerCameraCaptureModeVideo;
+            //            vpicker.startVideoCapture;
+            //            vpicker.showsCameraControls;
+            //restrict media type to video
+            vpicker.mediaTypes = [NSArray arrayWithObject:(NSString*)kUTTypeMovie];
+        }
+        else {
+            // if no video support 
+            NSLog(@"Your device does not support recording videos");
+        }
+        
+    }
+    
+    // finally, present the picker!
+    [self presentModalViewController:vpicker animated:YES];
+    
+}
+
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    
+    //grab url of recorded video
+    NSURL *url = [info objectForKey:UIImagePickerControllerMediaURL];
+    NSLog(@"The temporary URL is: %@", url);
+    
+    //create the liberary object
+    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+    
+    //create the completion block
+    ALAssetsLibraryWriteImageCompletionBlock completion = ^(NSURL *assetsURL, NSError *error)
+    {
+        
+        NSLog(@"Success! The new URL is: %@", assetsURL);
+    };
+    
+    
+    //saving the video
+    [assetsLibrary writeVideoAtPathToSavedPhotosAlbum:url completionBlock:completion];
+    [assetsLibrary release];
+    
+    //dismiss the picker
+    [picker dismissModalViewControllerAnimated:YES];
+}
+
 
 @end

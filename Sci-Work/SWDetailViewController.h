@@ -7,11 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
-@interface SWDetailViewController : UIViewController
+@interface SWDetailViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+{
+    
+    UIImagePickerController *vpicker;
+
+}
+
+@property (retain, nonatomic) UIImagePickerController *vpicker;
 
 @property (strong, nonatomic) id detailItem;
 
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+
+- (IBAction)recordVideo:(id)sender;
 
 @end

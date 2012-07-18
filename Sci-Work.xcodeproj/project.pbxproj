@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B92C6D5D15B6B26800D8A5D6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B92C6D5C15B6B26800D8A5D6 /* MobileCoreServices.framework */; };
+		B92C6D6015B6B27100D8A5D6 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B92C6D5F15B6B27100D8A5D6 /* AssetsLibrary.framework */; };
 		B9E2A06E15B57D8600014142 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E2A06D15B57D8600014142 /* UIKit.framework */; };
 		B9E2A07015B57D8600014142 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E2A06F15B57D8600014142 /* Foundation.framework */; };
 		B9E2A07215B57D8600014142 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E2A07115B57D8600014142 /* CoreGraphics.framework */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B92C6D5C15B6B26800D8A5D6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		B92C6D5F15B6B27100D8A5D6 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		B9E2A06915B57D8600014142 /* Sci-Work.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sci-Work.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E2A06D15B57D8600014142 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B9E2A06F15B57D8600014142 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -49,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B92C6D6015B6B27100D8A5D6 /* AssetsLibrary.framework in Frameworks */,
+				B92C6D5D15B6B26800D8A5D6 /* MobileCoreServices.framework in Frameworks */,
 				B9E2A09115B582FB00014142 /* SystemConfiguration.framework in Frameworks */,
 				B9E2A06E15B57D8600014142 /* UIKit.framework in Frameworks */,
 				B9E2A07015B57D8600014142 /* Foundation.framework in Frameworks */,
@@ -62,6 +68,8 @@
 		B9E2A05E15B57D8600014142 = {
 			isa = PBXGroup;
 			children = (
+				B92C6D5F15B6B27100D8A5D6 /* AssetsLibrary.framework */,
+				B92C6D5C15B6B26800D8A5D6 /* MobileCoreServices.framework */,
 				B9E2A09015B582FB00014142 /* SystemConfiguration.framework */,
 				B9E2A07315B57D8600014142 /* Sci-Work */,
 				B9E2A06C15B57D8600014142 /* Frameworks */,
@@ -295,6 +303,7 @@
 				B9E2A08C15B57D8600014142 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
