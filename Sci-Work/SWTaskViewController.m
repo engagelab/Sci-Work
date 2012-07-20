@@ -103,18 +103,24 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetails"])
     {
-        SWDetailViewController *viewController = [segue destinationViewController];
+        //SWDetailViewController *viewController = [segue destinationViewController];
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSString *object = [listofTaskTitles objectAtIndex:indexPath.row];
-        object = [object stringByAppendingString:(NSString*)_groupName];
-        viewController.detailItem = [self.tableView indexPathForSelectedRow];
         
-        [[segue destinationViewController] setDetailItem:object];
+        //send data to detailed view controller
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:object forKey:@"taskName"];
+        [dic setValue:_groupName forKey:@"groupName"];
+                                             
+        //object = [object stringByAppendingString:(NSString*)_groupName];
+        //[viewController setJsonYoutubeRequest:dic];
+        //viewController.detailItem = [self.tableView indexPathForSelectedRow];
         
-//        NSDate *object = [listofTaskTitles objectAtIndex:indexPath.row];
-//        
-//        [[segue destinationViewController] setDetailItem:object];
+        [[segue destinationViewController] setDetailItem:dic];
+        
+        [dic release];
+
     }
 }
 
