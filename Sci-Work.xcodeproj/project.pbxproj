@@ -712,7 +712,8 @@
 				B9079CE015B6B8270032C2A9 /* SBJsonParser.h */,
 				B9079CE115B6B8270032C2A9 /* SBJsonWriter.h */,
 			);
-			path = Headers;
+			name = Headers;
+			path = "Sci-Work/Headers";
 			sourceTree = "<group>";
 		};
 		B9079CFC15B6F5AD0032C2A9 /* Helper */ = {
@@ -724,6 +725,15 @@
 				B9079CFA15B6F59F0032C2A9 /* URLParser.m */,
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		B96E1B9C15BD68AA00B93E3B /* GDATA */ = {
+			isa = PBXGroup;
+			children = (
+				B9079BA415B6B8260032C2A9 /* Headers */,
+				B9079CE215B6B8270032C2A9 /* libGDataTouchStaticLib.a */,
+			);
+			name = GDATA;
 			sourceTree = "<group>";
 		};
 		B9E2A05E15B57D8600014142 = {
@@ -746,14 +756,14 @@
 		B9E2A06C15B57D8600014142 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B96E1B9C15BD68AA00B93E3B /* GDATA */,
 				B9079CE915B6BE410032C2A9 /* libxml2.dylib */,
+				B92C6D5F15B6B27100D8A5D6 /* AssetsLibrary.framework */,
+				B9E2A07115B57D8600014142 /* CoreGraphics.framework */,
+				B9E2A06F15B57D8600014142 /* Foundation.framework */,
 				B92C6D5C15B6B26800D8A5D6 /* MobileCoreServices.framework */,
 				B9E2A09015B582FB00014142 /* SystemConfiguration.framework */,
-				B92C6D5F15B6B27100D8A5D6 /* AssetsLibrary.framework */,
-				B9079CE215B6B8270032C2A9 /* libGDataTouchStaticLib.a */,
 				B9E2A06D15B57D8600014142 /* UIKit.framework */,
-				B9E2A06F15B57D8600014142 /* Foundation.framework */,
-				B9E2A07115B57D8600014142 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -771,7 +781,6 @@
 				B9E2A08615B57D8600014142 /* SWDetailViewController.m */,
 				B9E2A07F15B57D8600014142 /* MainStoryboard.storyboard */,
 				B9E2A07415B57D8600014142 /* Supporting Files */,
-				B9079BA415B6B8260032C2A9 /* Headers */,
 				B9079CFC15B6F5AD0032C2A9 /* Helper */,
 			);
 			path = "Sci-Work";

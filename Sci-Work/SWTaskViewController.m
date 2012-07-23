@@ -80,15 +80,23 @@
     return 1;
 }
 
+
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
     return [listofTaskTitles count];
 }
 
+
+
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     NSDate *object = [listofTaskTitles objectAtIndex:indexPath.row];
@@ -106,17 +114,17 @@
         //SWDetailViewController *viewController = [segue destinationViewController];
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
         NSString *object = [listofTaskTitles objectAtIndex:indexPath.row];
         
         //send data to detailed view controller
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+
         [dic setValue:object forKey:@"taskName"];
-        [dic setValue:_groupName forKey:@"groupName"];
-                                             
-        //object = [object stringByAppendingString:(NSString*)_groupName];
-        //[viewController setJsonYoutubeRequest:dic];
-        //viewController.detailItem = [self.tableView indexPathForSelectedRow];
         
+        [dic setValue:_groupName forKey:@"groupName"];
+        
+        //send task and group Info to detailed view controller
         [[segue destinationViewController] setDetailItem:dic];
         
         [dic release];

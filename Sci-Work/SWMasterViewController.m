@@ -149,8 +149,6 @@
     
  // utility methods
     
-    
-    
 -(void) fetchGroupNamesFromServer
 {
     NSString *urlString = [NSString stringWithFormat:@"http://imediamac11.uio.no:9000/group"];

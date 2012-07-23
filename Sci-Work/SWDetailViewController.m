@@ -230,13 +230,6 @@ ofTotalByteCount:(unsigned long long)dataLength;
 -(void)uploadToYoutbue:(NSURL*)videoPath;
 {
     
-    //NSString *videoTitle = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoTitle"];
-    //NSString *videoPath = @"/private/var/mobile/Applications/B963FBEC-CB83-4F36-8FEF-956F71EDDB54/tmp/capture/capturedvideo.MOV";
-    ///private/var/mobile/Applications/B963FBEC-CB83-4F36-8FEF-956F71EDDB54/tmp/capture-T0x1fd786c0.tmp.8kfAOM/capturedvideo.MOV
-    
-    //[[NSUserDefaults standardUserDefaults] objectForKey:@"videoPath"];
-    //NSString *path = [[NSBundle mainBundle] pathForResource:@"YouTubeTest" ofType:@"m4v"];
-    
     GDataServiceGoogleYouTube *service = [self youTubeService];
     
     NSURL *url = [GDataServiceGoogleYouTube youTubeUploadURLForUserID:kGDataServiceDefaultUser];
@@ -252,10 +245,12 @@ ofTotalByteCount:(unsigned long long)dataLength;
     GDataMediaCategory *category = [GDataMediaCategory mediaCategoryWithString:categoryStr];
     [category setScheme:kGDataSchemeYouTubeCategory];
     
+    //
     NSString *descStr = @"comming soon...";
     GDataMediaDescription *desc = [GDataMediaDescription textConstructWithString:descStr];
     
-    NSString *keywordsStr = @"iOS";
+    //tags are possible with youtube videos
+    NSString *keywordsStr = @"InterMedia";
     GDataMediaKeywords *keywords = [GDataMediaKeywords keywordsWithString:keywordsStr];
     
     BOOL isPrivate = NO;
@@ -333,23 +328,13 @@ ofTotalByteCount:(unsigned long long)dataLength {
                       forKey:@"url"];
         
         NSLog(@"_jsonYoutubeRequest : %@",_jsonYoutubeRequest);
-       //NSLog(@"vidoe uploaded Successfully");
-        // tell the user that the add worked
-        //        [self displayAlert:@"Uploaded"
-        //                    format:@"Uploaded video: %@",
-        //         [[videoEntry title] stringValue]];
-        
-        // refetch the current entries, in case the list of uploads
-        // has changed
-        //[self fetchAllEntries];
+
     } else {
         
         UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Hey upload failed!!!!" message:@"Try again..." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         [alert release];
-        //NSLog(@"vidoe upload fail");
-        //        [self displayAlert:@"Upload failed"
-        //                    format:@"Upload failed: %@", error];
+        
     }
     
    // [mUploadProgressIndicator setProgress:0.0];
@@ -410,28 +395,13 @@ ofTotalByteCount:(unsigned long long)dataLength {
 }
 
 
-
-
-
-
-
-
 // End of youtube service
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
+// post video meta data to Sci-Infrastructure Play2.0 server
 
 -(void) postVideo
 {
