@@ -13,7 +13,8 @@
 {
 
     NSMutableArray *listofTaskTitles;
+    NSMutableArray *listofTaskIds;
 }
 
-@property (strong, nonatomic) id groupName;
+@property (strong, nonatomic) id groupInfo;
 @end

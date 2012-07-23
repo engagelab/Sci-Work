@@ -33,7 +33,7 @@ ofTotalByteCount:(unsigned long long)dataLength;
 
 //video
 @synthesize vpicker;
-@synthesize jsonYoutubeRequest = _jsonYoutubeRequest;
+@synthesize jsonRequest = _jsonRequest;
 
 
 - (void)dealloc
@@ -56,19 +56,19 @@ ofTotalByteCount:(unsigned long long)dataLength;
 
         // Update the view.
         [self configureView];
+        
+        //intialize 
+        [self setJsonRequest:newDetailItem];
     }
 }
 
 
 
-- (void)setJsonYoutubeRequest:(NSMutableDictionary *)jsonYoutubeRequestNew
+- (void)setJsonRequest:(NSMutableDictionary *)jsonRequestNew
 {
-    if (_jsonYoutubeRequest != jsonYoutubeRequestNew) {
-        [_jsonYoutubeRequest release];
-        _jsonYoutubeRequest = [jsonYoutubeRequestNew retain];
-        
-        // Update the view.
-       
+    if (_jsonRequest != jsonRequestNew) {
+        [_jsonRequest release];
+        _jsonRequest = [jsonRequestNew retain];
     }
 }
 
@@ -92,7 +92,7 @@ ofTotalByteCount:(unsigned long long)dataLength;
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
-    _jsonYoutubeRequest = [[NSMutableDictionary alloc] init];
+    //_jsonRequest = [[NSMutableDictionary alloc] init];
 }
 
 - (void)viewDidUnload
@@ -100,7 +100,7 @@ ofTotalByteCount:(unsigned long long)dataLength;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     self.detailDescriptionLabel = nil;
-    [_jsonYoutubeRequest release];
+    //[_jsonRequest release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -238,7 +238,7 @@ ofTotalByteCount:(unsigned long long)dataLength;
     
     
     // gather all the metadata needed for the mediaGroup
-    NSString *titleStr = @"My first iOS-Youtube app";
+    NSString *titleStr = @"Video for Miracle";
     GDataMediaTitle *title = [GDataMediaTitle textConstructWithString:titleStr];
     
     NSString *categoryStr = @"Education";
@@ -324,10 +324,13 @@ ofTotalByteCount:(unsigned long long)dataLength {
         NSString *v = [parser valueForVariable:@"v"];
         
         // insert youtube url into jsonYoutubeRequest
-        [_jsonYoutubeRequest setValue:v
-                      forKey:@"url"];
+        [_jsonRequest setValue:v
+                      forKey:@"uri"];
         
-        NSLog(@"_jsonYoutubeRequest : %@",_jsonYoutubeRequest);
+        NSLog(@"_jsonRequest : %@",_jsonRequest);
+        
+        // post this video metadata on sci-infra
+        [self postVideo];
 
     } else {
         
@@ -401,33 +404,30 @@ ofTotalByteCount:(unsigned long long)dataLength {
 
 
 
-// post video meta data to Sci-Infrastructure Play2.0 server
+
 
 -(void) postVideo
 {
-    /*             Create custom Json request*/
+    /*              SET static value of JSON POST requst with other video meta info
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
     [dictionary setValue:@"My First XCODE Video"
                   forKey:@"title"];
     
-    [dictionary setValue:@"4ff6ce23300436aabefc1b09"
-                  forKey:@"groupId"];
-    
-    [dictionary setValue:@"4ff6cecf300436aabefc1b23"
-                  forKey:@"taskId"];
-    
     [dictionary setValue:[NSNumber numberWithUnsignedInteger:3]
                   forKey:@"runId"];
     
-    [dictionary setValue:@"gx6SCsP-HfE"
-                  forKey:@"uri"];
+     */
     
     
-    //    [dictionary setValue:[NSNumber numberWithUnsignedInteger:51]
-    //                  forKey:@"Age"];
+    [_jsonRequest setValue:@"Video for Miracle"
+                    forKey:@"title"];
+    
+    [_jsonRequest setValue:[NSNumber numberWithUnsignedInteger:3]
+                    forKey:@"runId"];
+    
     
     NSError *error; 
-    NSData *jsonDataLocal = [NSJSONSerialization dataWithJSONObject:dictionary 
+    NSData *jsonDataLocal = [NSJSONSerialization dataWithJSONObject:_jsonRequest 
                                                             options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
                                                               error:&error];
     

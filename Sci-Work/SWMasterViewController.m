@@ -14,7 +14,7 @@
     NSMutableArray *_objects;
 }
 -(void) fetchGroupNamesFromServer;
--(void)extractGroupName: (NSMutableArray*)json;
+-(void)extractGroupInfo: (NSMutableArray*)json;
 
 @end
 
@@ -132,17 +132,19 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    NSLog(@"Source Controller = %@", [segue sourceViewController]);
-//    NSLog(@"Destination Controller = %@", [segue destinationViewController]);
-//    NSLog(@"Segue Identifier = %@", [segue identifier]);
+
     if ([[segue identifier] isEqualToString:@"showTasks"])
     {
         SWTaskViewController *viewController = [segue destinationViewController];
-        viewController.groupName = [self.tableView indexPathForSelectedRow];
+        viewController.groupInfo = [self.tableView indexPathForSelectedRow];
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSString *object = [listofGroupName objectAtIndex:indexPath.row];
-        [[segue destinationViewController] setGroupName:object];
+        
+        // extract group info and pass to next view
+        
+        NSString *object = [listofGroupId objectAtIndex:indexPath.row];
+        
+        [[segue destinationViewController] setGroupInfo:object];
     }
 }
     
@@ -162,24 +164,37 @@
     NSMutableArray *json = (NSMutableArray*)[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     
     NSLog(@"%@", [json objectAtIndex:0]);
-    [self extractGroupName:json];
+    [self extractGroupInfo:json];
 
 }
 
--(void)extractGroupName: (NSMutableArray*)json
+
+// searching inside array of dictionaries
+-(void)extractGroupInfo: (NSMutableArray*)json
 {
     NSMutableArray *groupNames = [NSMutableArray array];
+    NSMutableArray *groupIds = [NSMutableArray array];
+    
     
     for (NSDictionary *dict in json)
             {
                 NSString *name = [[NSString alloc] init] ;
+                NSString *idd = [[NSString alloc] init] ;
+                
+                
                 name = [dict objectForKey:@"name"];
                 [groupNames addObject:name];
+                
+                idd = [dict objectForKey:@"id"];
+                [groupIds addObject:idd];
             }
     
-    listofGroupName = [[NSMutableArray alloc]initWithArray:groupNames];       
+    listofGroupName = [[NSMutableArray alloc]initWithArray:groupNames]; 
+    
+    listofGroupId =  [[NSMutableArray alloc]initWithArray:groupIds]; 
     
     NSLog(@"Group Names Array = %@", listofGroupName);
+    NSLog(@"Group Names Array = %@", listofGroupId);
 }
 
 

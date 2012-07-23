@@ -12,7 +12,11 @@
 
 @interface SWMasterViewController : UITableViewController
 {
+    // use for rendering TABLEVIEW cells
     NSMutableArray *listofGroupName;
+    
+    // use for posting video metadata on sci-infrastructure
+    NSMutableArray *listofGroupId;
 }
 
 @end

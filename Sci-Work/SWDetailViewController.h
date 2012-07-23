@@ -21,7 +21,7 @@
     NSURL *mUploadLocationURL;
     UIImagePickerController *vpicker;
     
-    NSMutableDictionary *jsonYoutubeRequest;
+    NSMutableDictionary *jsonRequest;
 
 }
 
@@ -31,7 +31,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
-@property (nonatomic, retain) NSMutableDictionary *jsonYoutubeRequest;
+@property (nonatomic, retain) NSMutableDictionary *jsonRequest;
 
 - (IBAction)recordVideo:(id)sender;
 

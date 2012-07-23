@@ -11,8 +11,8 @@
 
 @interface SWTaskViewController ()
 
--(void) fetchTaskTitlesFromServer;
--(void)extractTaskTitles: (NSMutableArray*)json;
+-(void) fetchTaskInfoFromServer;
+-(void)extractTaskInfo: (NSMutableArray*)json;
 
 @end
 
@@ -21,17 +21,17 @@
 
 
 @implementation SWTaskViewController
-@synthesize groupName = _groupName;
+@synthesize groupInfo = _groupInfo;
 
 
 
 
-- (void)setGroupName:(id)newGroupName
+- (void)setgroupInfo:(id)newgroupInfo
 {
-    if (_groupName != newGroupName) {
-        [_groupName release];
-        _groupName = [newGroupName retain];
-        NSLog(@"groupName: %@",_groupName);
+    if (_groupInfo != newgroupInfo) {
+        [_groupInfo release];
+        _groupInfo = [newgroupInfo retain];
+        NSLog(@"groupInfo: %@",_groupInfo);
         // Update the view.
         //[self configureView];
     }
@@ -50,7 +50,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self fetchTaskTitlesFromServer];
+    [self fetchTaskInfoFromServer];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -115,14 +115,14 @@
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        NSString *object = [listofTaskTitles objectAtIndex:indexPath.row];
+        NSString *object = [listofTaskIds objectAtIndex:indexPath.row];
         
         //send data to detailed view controller
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
 
-        [dic setValue:object forKey:@"taskName"];
+        [dic setValue:object forKey:@"taskId"];
         
-        [dic setValue:_groupName forKey:@"groupName"];
+        [dic setValue:_groupInfo forKey:@"groupId"];
         
         //send task and group Info to detailed view controller
         [[segue destinationViewController] setDetailItem:dic];
@@ -190,7 +190,7 @@
 
 //utility methods
 
--(void) fetchTaskTitlesFromServer
+-(void) fetchTaskInfoFromServer
 {
     NSString *urlString = [NSString stringWithFormat:@"http://imediamac11.uio.no:9000/task/project/4ff6ce6b300436aabefc1b1a"];
     
@@ -204,25 +204,34 @@
     
     NSLog(@"%@", [json objectAtIndex:0]);
     
-    [self extractTaskTitles:json];
+    [self extractTaskInfo:json];
     
 }
 
 
--(void)extractTaskTitles:(NSMutableArray *)json
+-(void)extractTaskInfo:(NSMutableArray *)json
 {
     NSMutableArray *taskTitles = [NSMutableArray array];
+    NSMutableArray *taskIds = [NSMutableArray array];
     
     for (NSDictionary *dict in json)
     {
         NSString *title = [[NSString alloc] init] ;
+        NSString *idd = [[NSString alloc] init] ;
+        
         title = [dict objectForKey:@"title"];
         [taskTitles addObject:title];
+        
+        idd = [dict objectForKey:@"id"];
+        [taskIds addObject:idd];
     }
     
     listofTaskTitles = [[NSMutableArray alloc]initWithArray:taskTitles];       
     
+    listofTaskIds = [[NSMutableArray alloc]initWithArray:taskIds];
+    
     NSLog(@"Group Names Array = %@", listofTaskTitles);
+    NSLog(@"Group Names Array = %@", listofTaskIds);
 }
 
 
