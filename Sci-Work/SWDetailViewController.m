@@ -10,7 +10,13 @@
 
 @interface SWDetailViewController ()
 - (void)configureView;
+
 -(void) postVideo;
+
+-(void) postImage:(NSData*)imageData;
+
+-(void) restfulPostMethodCore :(NSMutableURLRequest*)urlRequest;
+
 
 //youtube
 -(void)uploadToYoutbue:(NSURL*)videourl;
@@ -178,10 +184,14 @@ ofTotalByteCount:(unsigned long long)dataLength;
         NSDictionary *metadata=[info objectForKey:UIImagePickerControllerMediaMetadata];
         
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        /*
+         turning the image into a NSData object
+         getting the image back out of the UIImageView
+         setting the quality to 90
+         */
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.9);
         
-         NSData *imageData = UIImageJPEGRepresentation(image, 0.9);
-        //slow png
-        //NSData *imageData = UIImagePNGRepresentation(image);
+        [self postImage:imageData];
         
         [assetsLibrary writeImageDataToSavedPhotosAlbum:imageData metadata:metadata completionBlock:completion];
         
@@ -408,16 +418,6 @@ ofTotalByteCount:(unsigned long long)dataLength {
 
 -(void) postVideo
 {
-    /*              SET static value of JSON POST requst with other video meta info
-    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-    [dictionary setValue:@"My First XCODE Video"
-                  forKey:@"title"];
-    
-    [dictionary setValue:[NSNumber numberWithUnsignedInteger:3]
-                  forKey:@"runId"];
-    
-     */
-    
     
     [_jsonRequest setValue:@"Video for Miracle"
                     forKey:@"title"];
@@ -425,12 +425,10 @@ ofTotalByteCount:(unsigned long long)dataLength {
     [_jsonRequest setValue:[NSNumber numberWithUnsignedInteger:3]
                     forKey:@"runId"];
     
-    
     NSError *error; 
     NSData *jsonDataLocal = [NSJSONSerialization dataWithJSONObject:_jsonRequest 
                                                             options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
                                                               error:&error];
-    
     if (! jsonDataLocal) {
         NSLog(@"Got an error: %@", error);
     } 
@@ -443,7 +441,6 @@ ofTotalByteCount:(unsigned long long)dataLength {
         
         NSString *urlAsString = @"http://imediamac11.uio.no:9000/group/video/";
         
-        
         NSURL *url = [NSURL URLWithString:urlAsString];
         
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
@@ -453,29 +450,98 @@ ofTotalByteCount:(unsigned long long)dataLength {
         [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [urlRequest setHTTPBody:jsonBodyData];
         
+        [self restfulPostMethodCore: urlRequest];
         
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    }
+    
+}
+
+
+-(void) postImage:(NSData*)imageData
+{
+    
+    [_jsonRequest setValue:@"Video for Miracle"
+                    forKey:@"title"];
+    
+    [_jsonRequest setValue:[NSNumber numberWithUnsignedInteger:3]
+                    forKey:@"runId"];
+    
+    NSError *error; 
+    NSData *jsonDataLocal = [NSJSONSerialization dataWithJSONObject:_jsonRequest 
+                                                            options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
+                                                              error:&error];
+    if (! jsonDataLocal) {
+        NSLog(@"Got an error: %@", error);
+    } 
+    else 
+    {
+
+        // setting up the URL to post to
+        NSString *urlString = @"http";
         
-        [NSURLConnection
-         sendAsynchronousRequest:urlRequest
-         queue:queue
-         completionHandler:^(NSURLResponse *response,
-                             NSData *data,
-                             NSError *error) {
-             if ([data length] >0 &&
-                 error == nil){
-                 NSString *json = [[NSString alloc] initWithData:data
-                                                        encoding:NSUTF8StringEncoding];
-                 NSLog(@"JSON = %@", json);
-             }
-             else if ([data length] == 0 &&
-                      error == nil){
-                 NSLog(@"Nothing was downloaded.");
-             }
-             else if (error != nil){
-                 NSLog(@"Error happened = %@", error);
-             }
-         }];
+        // setting up the request object now
+        NSMutableURLRequest *urlRequest = [[[NSMutableURLRequest alloc] init] autorelease];
+        [urlRequest setURL:[NSURL URLWithString:urlString]];
+        [urlRequest setHTTPMethod:@"POST"];
+        
+        /*
+         add some header info now
+         we always need a boundary when we post a file
+         also we need to set the content type
+         
+         You might want to generate a random boundary.. this is just the same
+         as my output from wireshark on a valid html post
+         */
+        NSString *stringBoundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
+        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",stringBoundary];
+        [urlRequest addValue:contentType forHTTPHeaderField: @"Content-Type"];
+
+
+        /*
+         now lets create the body of the post
+         */
+        NSMutableData *postBody = [NSMutableData data];
+        [postBody appendData:[[NSString stringWithFormat:@"\r\n\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"source\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithString:@"lighttable"] dataUsingEncoding:NSUTF8StringEncoding]];  // So Light Table show up as source in Twitter post
+        
+        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"title\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithString:@"book title"] dataUsingEncoding:NSUTF8StringEncoding]];  // title
+        
+        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"isbn\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithString:@"isbn info"] dataUsingEncoding:NSUTF8StringEncoding]];  // isbn
+        
+        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"price\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithString:@"price is"] dataUsingEncoding:NSUTF8StringEncoding]];  // Price
+        
+        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"condition\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithString:@"condition is"] dataUsingEncoding:NSUTF8StringEncoding]];  // Price
+        
+        
+        NSString *imageFileName = [NSString stringWithFormat:@"photo.jpeg"];
+        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"upload\"; filename=\"%@\"\r\n",imageFileName] dataUsingEncoding:NSUTF8StringEncoding]];
+        //[postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"upload\"\r\n\n\n"]dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [postBody appendData:imageData];
+        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        
+        //  [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        NSLog(@"postBody=%@", [[NSString alloc] initWithData:postBody encoding:NSASCIIStringEncoding]);
+        [urlRequest setHTTPBody:postBody];
+        
+        NSLog(@"Image data=%@",[[NSString alloc] initWithData:imageData encoding:NSASCIIStringEncoding]);
+        
+        // Spawn a new thread so the UI isn't blocked while we're uploading the image
+        [NSThread detachNewThreadSelector:@selector(uploadingDataWithURLRequest:) toTarget:self withObject:urlRequest]; 
+
         
     }
     
@@ -483,6 +549,33 @@ ofTotalByteCount:(unsigned long long)dataLength {
 
 
 
+
+-(void) restfulPostMethodCore :(NSMutableURLRequest*)urlRequest
+{
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection
+     sendAsynchronousRequest:urlRequest
+     queue:queue
+     completionHandler:^(NSURLResponse *response,
+                         NSData *data,
+                         NSError *error) {
+         if ([data length] >0 &&
+             error == nil){
+             NSString *json = [[NSString alloc] initWithData:data
+                                                    encoding:NSUTF8StringEncoding];
+             NSLog(@"JSON = %@", json);
+         }
+         else if ([data length] == 0 &&
+                  error == nil){
+             NSLog(@"Nothing was downloaded.");
+         }
+         else if (error != nil){
+             NSLog(@"Error happened = %@", error);
+         }
+     }];
+}
 
 
 @end

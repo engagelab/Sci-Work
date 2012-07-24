@@ -736,6 +736,13 @@
 			name = GDATA;
 			sourceTree = "<group>";
 		};
+		B96E1BA115BDBED700B93E3B /* resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
 		B9E2A05E15B57D8600014142 = {
 			isa = PBXGroup;
 			children = (
@@ -789,6 +796,7 @@
 		B9E2A07415B57D8600014142 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B96E1BA115BDBED700B93E3B /* resources */,
 				B9E2A07515B57D8600014142 /* Sci-Work-Info.plist */,
 				B9E2A07615B57D8600014142 /* InfoPlist.strings */,
 				B9E2A07915B57D8600014142 /* main.m */,

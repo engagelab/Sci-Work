@@ -68,6 +68,11 @@
 {
     [super viewDidLoad];
     
+    
+    
+    
+    
+    
     [self hasInternet];
     [self fetchGroupNamesFromServer];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -97,22 +102,40 @@
     return 1;
 }
 
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return listofGroupName.count;
 }
 
+
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
-    NSDate *object = [listofGroupName objectAtIndex:indexPath.row];
-
+    NSString *object = [listofGroupName objectAtIndex:indexPath.row];
+    
+    //group name as main text
     cell.textLabel.text = [object description];
+    
+    // group member
+    cell.detailTextLabel.text = @"Fahied, Edith, Jeremy";
+    
     
     return cell;
 }
 
+
+
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 58;
+}
 
 /*
 // Override to support rearranging the table view.
@@ -164,6 +187,7 @@
     NSMutableArray *json = (NSMutableArray*)[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     
     NSLog(@"%@", [json objectAtIndex:0]);
+    
     [self extractGroupInfo:json];
 
 }
@@ -194,6 +218,7 @@
     listofGroupId =  [[NSMutableArray alloc]initWithArray:groupIds]; 
     
     NSLog(@"Group Names Array = %@", listofGroupName);
+    
     NSLog(@"Group Names Array = %@", listofGroupId);
 }
 
