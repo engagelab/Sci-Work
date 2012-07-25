@@ -481,8 +481,8 @@ ofTotalByteCount:(unsigned long long)dataLength {
         NSString *taskId = [_jsonRequest valueForKey:@"taskId"];
         NSString *runId = @"3";
         
-        // setting up the URL to post to
-        NSString *baseUrl = @"http://imediamac11.uio.no:9000/group/image/";
+        // setting up the URL for the post request
+        NSString *baseUrl = @"http://imediamac11.uio.no:9000/image/";
         NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@%@", baseUrl, groupId,@"/", taskId,@"/",runId];
 
         
@@ -531,7 +531,7 @@ ofTotalByteCount:(unsigned long long)dataLength {
         
         NSString *imageFileName = [NSString stringWithFormat:@"photo.jpeg"];
         [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"upload\"; filename=\"%@\"\r\n",imageFileName] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"picture\"; filename=\"%@\"\r\n",imageFileName] dataUsingEncoding:NSUTF8StringEncoding]];
         //[postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"upload\"\r\n\n\n"]dataUsingEncoding:NSUTF8StringEncoding]];
         [postBody appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         
@@ -547,9 +547,38 @@ ofTotalByteCount:(unsigned long long)dataLength {
         NSLog(@"Image data=%@",[[NSString alloc] initWithData:imageData encoding:NSASCIIStringEncoding]);
         
         // Spawn a new thread so the UI isn't blocked while we're uploading the image
-        [NSThread detachNewThreadSelector:@selector(uploadingDataWithURLRequest:) toTarget:self withObject:urlRequest]; 
-
+        //[NSThread detachNewThreadSelector:@selector(uploadingDataWithURLRequest:) toTarget:self withObject:urlRequest]; 
+        // now lets make the connection to the web
+        //NSData *returnData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
+        //NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
         
+        //NSLog(returnString);
+        
+        
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        
+        [NSURLConnection
+         sendAsynchronousRequest:urlRequest
+         queue:queue
+         completionHandler:^(NSURLResponse *response,
+                             NSData *data,
+                             NSError *error) {
+             if ([data length] >0 &&
+                 error == nil){
+                 NSString *json = [[NSString alloc] initWithData:data
+                                                        encoding:NSUTF8StringEncoding];
+                 NSLog(@"JSON = %@", json);
+             }
+             else if ([data length] == 0 &&
+                      error == nil){
+                 NSLog(@"Nothing was downloaded.");
+             }
+             else if (error != nil){
+                 NSLog(@"Error happened = %@", error);
+             }
+         }];
+        
+    
     }
     
 }
