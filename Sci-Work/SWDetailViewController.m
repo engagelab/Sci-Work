@@ -99,6 +99,7 @@ ofTotalByteCount:(unsigned long long)dataLength;
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
     //_jsonRequest = [[NSMutableDictionary alloc] init];
+    self.navigationItem.title = [_jsonRequest valueForKey:@"taskTitle"];
 }
 
 - (void)viewDidUnload
@@ -189,6 +190,7 @@ ofTotalByteCount:(unsigned long long)dataLength;
          getting the image back out of the UIImageView
          setting the quality to 90
          */
+        //NSString fileName = [image];
         NSData *imageData = UIImageJPEGRepresentation(image, 0.9);
         
         [self postImage:imageData];
@@ -470,14 +472,19 @@ ofTotalByteCount:(unsigned long long)dataLength {
     NSData *jsonDataLocal = [NSJSONSerialization dataWithJSONObject:_jsonRequest 
                                                             options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
                                                               error:&error];
-    if (! jsonDataLocal) {
+    if (! imageData && !jsonDataLocal) {
         NSLog(@"Got an error: %@", error);
     } 
     else 
     {
-
+        NSString *groupId = [_jsonRequest valueForKey:@"groupId"];
+        NSString *taskId = [_jsonRequest valueForKey:@"taskId"];
+        NSString *runId = @"3";
+        
         // setting up the URL to post to
-        NSString *urlString = @"http";
+        NSString *baseUrl = @"http://imediamac11.uio.no:9000/group/image/";
+        NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@%@", baseUrl, groupId,@"/", taskId,@"/",runId];
+
         
         // setting up the request object now
         NSMutableURLRequest *urlRequest = [[[NSMutableURLRequest alloc] init] autorelease];
@@ -501,25 +508,25 @@ ofTotalByteCount:(unsigned long long)dataLength {
          now lets create the body of the post
          */
         NSMutableData *postBody = [NSMutableData data];
-        [postBody appendData:[[NSString stringWithFormat:@"\r\n\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"source\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithString:@"lighttable"] dataUsingEncoding:NSUTF8StringEncoding]];  // So Light Table show up as source in Twitter post
-        
-        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"title\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithString:@"book title"] dataUsingEncoding:NSUTF8StringEncoding]];  // title
-        
-        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"isbn\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithString:@"isbn info"] dataUsingEncoding:NSUTF8StringEncoding]];  // isbn
-        
-        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"price\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithString:@"price is"] dataUsingEncoding:NSUTF8StringEncoding]];  // Price
-        
-        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"condition\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithString:@"condition is"] dataUsingEncoding:NSUTF8StringEncoding]];  // Price
+//        [postBody appendData:[[NSString stringWithFormat:@"\r\n\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"source\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postBody appendData:[[NSString stringWithString:@"lighttable"] dataUsingEncoding:NSUTF8StringEncoding]];  // So Light Table show up as source in Twitter post
+//        
+//        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"title\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postBody appendData:[[NSString stringWithString:@"book title"] dataUsingEncoding:NSUTF8StringEncoding]];  // title
+//        
+//        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"isbn\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postBody appendData:[[NSString stringWithString:@"isbn info"] dataUsingEncoding:NSUTF8StringEncoding]];  // isbn
+//        
+//        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"price\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postBody appendData:[[NSString stringWithString:@"price is"] dataUsingEncoding:NSUTF8StringEncoding]];  // Price
+//        
+//        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"condition\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postBody appendData:[[NSString stringWithString:@"condition is"] dataUsingEncoding:NSUTF8StringEncoding]];  // Price
         
         
         NSString *imageFileName = [NSString stringWithFormat:@"photo.jpeg"];

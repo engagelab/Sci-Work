@@ -80,6 +80,9 @@
 //
 //    UIBarButtonItem *addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)] autorelease];
 //    self.navigationItem.rightBarButtonItem = addButton;
+    //self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:10.0f green:20.0f blue:32.0f alpha:0.7f];
+    //self.navigationController.navigationBar.tintColor = [UIColor greenColor];
+
 }
 
 - (void)viewDidUnload
@@ -121,13 +124,26 @@
     //group name as main text
     cell.textLabel.text = [object description];
     
+    NSString *imageName =  [[object description] stringByAppendingString:@".png"];;
+    
     // group member
     cell.detailTextLabel.text = @"Fahied, Edith, Jeremy";
+    cell.imageView.image = [UIImage imageNamed:imageName];
     
+    //tableView.backgroundColor = [UIColor whiteColor];
     
     return cell;
 }
 
+
+
+//- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section 
+//{
+//    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)] autorelease];
+//        [headerView setBackgroundColor:[UIColor greenColor]];
+//    
+//    return headerView;
+//}
 
 
 

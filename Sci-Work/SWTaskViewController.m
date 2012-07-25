@@ -56,7 +56,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
+    }
 
 - (void)viewDidUnload
 {
@@ -117,15 +117,20 @@
         
         NSString *object = [listofTaskIds objectAtIndex:indexPath.row];
         
+        NSString *objectTitle = [listofTaskTitles objectAtIndex:indexPath.row];
+        
         //send data to detailed view controller
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
 
         [dic setValue:object forKey:@"taskId"];
+        //for navigation title in next screen
+        [dic setValue:objectTitle forKey:@"taskTitle"];
         
         [dic setValue:_groupInfo forKey:@"groupId"];
         
         //send task and group Info to detailed view controller
         [[segue destinationViewController] setDetailItem:dic];
+      
         
         [dic release];
 
