@@ -529,9 +529,10 @@ ofTotalByteCount:(unsigned long long)dataLength {
 //        [postBody appendData:[[NSString stringWithString:@"condition is"] dataUsingEncoding:NSUTF8StringEncoding]];  // Price
         
         
-        NSString *imageFileName = [NSString stringWithFormat:@"photo.jpeg"];
+        //NSString *imageFileName = [NSString stringWithFormat:@"photo.jpeg"];
+        NSString *uuidFileName = [[[NSProcessInfo processInfo] globallyUniqueString] stringByAppendingString:@".jpg"];
         [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"picture\"; filename=\"%@\"\r\n",imageFileName] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"picture\"; filename=\"%@\"\r\n",uuidFileName] dataUsingEncoding:NSUTF8StringEncoding]];
         //[postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"upload\"\r\n\n\n"]dataUsingEncoding:NSUTF8StringEncoding]];
         [postBody appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         
