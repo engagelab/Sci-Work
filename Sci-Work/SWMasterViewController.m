@@ -127,7 +127,7 @@
     NSString *imageName =  [[object description] stringByAppendingString:@".png"];;
     
     // group member
-    cell.detailTextLabel.text = @"Fahied, Edith, Jeremy";
+    cell.detailTextLabel.text = [listOfGroupMembers objectAtIndex:indexPath.row];
     cell.imageView.image = [UIImage imageNamed:imageName];
     
     //tableView.backgroundColor = [UIColor whiteColor];
@@ -212,30 +212,59 @@
 // searching inside array of dictionaries
 -(void)extractGroupInfo: (NSMutableArray*)json
 {
-    NSMutableArray *groupNames = [NSMutableArray array];
-    NSMutableArray *groupIds = [NSMutableArray array];
+    NSMutableArray *groupNames  = [NSMutableArray array];
+    
+    NSMutableArray *groupIds    = [NSMutableArray array];
+    
+    NSMutableArray *groupMembers = [NSMutableArray array];
     
     
     for (NSDictionary *dict in json)
             {
                 NSString *name = [[NSString alloc] init] ;
                 NSString *idd = [[NSString alloc] init] ;
-                
+                NSMutableString *memNames =  [[NSMutableString alloc] init] ; ;
                 
                 name = [dict objectForKey:@"name"];
                 [groupNames addObject:name];
                 
                 idd = [dict objectForKey:@"id"];
                 [groupIds addObject:idd];
+                
+                //extract group members
+                NSDictionary *members = [[NSDictionary alloc] init];
+                members = [dict objectForKey:@"susers"];
+
+                if (members != NULL) 
+                {
+                    
+                    for (NSDictionary *mdic in members) 
+                    {
+                            
+                        NSString *mName = [[NSString alloc] init] ;
+                        
+                        mName = [mdic objectForKey:@"name"];
+                        
+                        [memNames appendString:mName];
+                        [memNames appendString:@" "];
+                    }
+                }
+                
+                [groupMembers addObject:memNames];
+                
             }
     
-    listofGroupName = [[NSMutableArray alloc]initWithArray:groupNames]; 
+    listofGroupName     = [[NSMutableArray alloc]initWithArray:groupNames]; 
     
-    listofGroupId =  [[NSMutableArray alloc]initWithArray:groupIds]; 
+    listofGroupId       =  [[NSMutableArray alloc]initWithArray:groupIds];
+    
+    listOfGroupMembers  = [[NSMutableArray alloc]initWithArray:groupMembers];
     
     NSLog(@"Group Names Array = %@", listofGroupName);
     
     NSLog(@"Group Names Array = %@", listofGroupId);
+    
+     NSLog(@"Group Names Array = %@", listOfGroupMembers);
 }
 
 

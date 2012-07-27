@@ -17,6 +17,9 @@
     
     // use for posting video metadata on sci-infrastructure
     NSMutableArray *listofGroupId;
+    
+    //use for extracting group members
+    NSMutableArray *listOfGroupMembers;
 }
 
 @end

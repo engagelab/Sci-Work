@@ -197,7 +197,7 @@
 
 -(void) fetchTaskInfoFromServer
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://imediamac11.uio.no:9000/task/project/4ff6ce6b300436aabefc1b1a"];
+    NSString *urlString = [NSString stringWithFormat:@"http://imediamac11.uio.no:9000/task/project/50127c340364d71cb492a550"];
     
     NSURL *url = [NSURL URLWithString:urlString];
     
