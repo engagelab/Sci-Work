@@ -7,7 +7,7 @@
 //
 
 #import "SWDetailViewController.h"
-
+#import "SWPostitViewController.h"
 @interface SWDetailViewController ()
 - (void)configureView;
 
@@ -162,9 +162,11 @@ ofTotalByteCount:(unsigned long long)dataLength;
 
 
 
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-
+    
+    
     //grab the media type
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
 
@@ -612,6 +614,19 @@ ofTotalByteCount:(unsigned long long)dataLength {
              NSLog(@"Error happened = %@", error);
          }
      }];
+}
+
+
+- (IBAction)postitButtonPressed:(id)sender {
+    
+    UIStoryboard *postitStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard"
+                                                               bundle:nil];
+    SWPostitViewController *postitVC =[postitStoryboard instantiateViewControllerWithIdentifier:@"postit"];
+    [postitVC setDetailItem:_jsonRequest];
+    
+    [self presentViewController:postitVC  animated:YES completion:nil];
+    
+    //[[segue destinationViewController] setDetailItem:dic];
 }
 
 

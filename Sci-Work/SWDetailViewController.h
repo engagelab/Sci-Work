@@ -34,5 +34,6 @@
 @property (nonatomic, retain) NSMutableDictionary *jsonRequest;
 
 - (IBAction)recordVideo:(id)sender;
+- (IBAction)postitButtonPressed:(id)sender;
 
 @end

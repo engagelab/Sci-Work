@@ -34,6 +34,7 @@
 		B9E2A08F15B582E600014142 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2A08E15B582E600014142 /* Reachability.m */; };
 		B9E2A09115B582FB00014142 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E2A09015B582FB00014142 /* SystemConfiguration.framework */; };
 		B9E2A09815B5982A00014142 /* SWTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2A09715B5982A00014142 /* SWTaskViewController.m */; };
+		B9F87DA515C412BC004CAFC3 /* SWPostitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F87DA415C412BC004CAFC3 /* SWPostitViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -390,6 +391,8 @@
 		B9E2A09015B582FB00014142 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B9E2A09615B5982A00014142 /* SWTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTaskViewController.h; sourceTree = "<group>"; };
 		B9E2A09715B5982A00014142 /* SWTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTaskViewController.m; sourceTree = "<group>"; };
+		B9F87DA315C412BC004CAFC3 /* SWPostitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWPostitViewController.h; sourceTree = "<group>"; };
+		B9F87DA415C412BC004CAFC3 /* SWPostitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWPostitViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -816,6 +819,8 @@
 				B9E2A09715B5982A00014142 /* SWTaskViewController.m */,
 				B9E2A08515B57D8600014142 /* SWDetailViewController.h */,
 				B9E2A08615B57D8600014142 /* SWDetailViewController.m */,
+				B9F87DA315C412BC004CAFC3 /* SWPostitViewController.h */,
+				B9F87DA415C412BC004CAFC3 /* SWPostitViewController.m */,
 				B9E2A07F15B57D8600014142 /* MainStoryboard.storyboard */,
 				B9E2A07415B57D8600014142 /* Supporting Files */,
 				B9079CFC15B6F5AD0032C2A9 /* Helper */,
@@ -915,6 +920,7 @@
 				B9E2A08F15B582E600014142 /* Reachability.m in Sources */,
 				B9E2A09815B5982A00014142 /* SWTaskViewController.m in Sources */,
 				B9079CFB15B6F59F0032C2A9 /* URLParser.m in Sources */,
+				B9F87DA515C412BC004CAFC3 /* SWPostitViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
