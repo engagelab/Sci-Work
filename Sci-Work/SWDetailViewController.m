@@ -571,6 +571,11 @@ ofTotalByteCount:(unsigned long long)dataLength {
                  NSString *json = [[NSString alloc] initWithData:data
                                                         encoding:NSUTF8StringEncoding];
                  NSLog(@"JSON = %@", json);
+                 
+                 UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Hey!!!!" message:@"Image uploaded Successfully" delegate:self cancelButtonTitle:@"Done" otherButtonTitles: nil];
+                 [alert show];
+                 [alert release];
+                 
              }
              else if ([data length] == 0 &&
                       error == nil){
@@ -615,6 +620,8 @@ ofTotalByteCount:(unsigned long long)dataLength {
          }
      }];
 }
+
+
 
 
 - (IBAction)postitButtonPressed:(id)sender {
